@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+@layer base {
+  .h1 {
+    @apply font-semibold tracking-widest text-h1 leading-h1;
+  }
+  .h2 {
+    @apply text-5xl font-semibold tracking-wider leading-h2;
+    /* @apply lg:h1 md:h4; */
+  }
+  .h3 {
+    @apply text-4xl font-semibold tracking-normal leading-h3;
+  }
+  .h4 {
+    @apply font-semibold leading-10 text-h4;
+  }
+  .h5 {
+    @apply font-semibold leading-8 tracking-normal text-h5;
+  }
+  .h6 {
+    @apply text-lg font-semibold leading-h6;
+  }
+}
