@@ -83,19 +83,22 @@ export default function CoinCalculatorClient(props: PropType) {
     setCalculatedPrice(0);
   };
 
-  const handleCalcuate = () => {
-    const totalCost = enterValue.reduce(
-      (acc, val) =>
-        acc +
-        Number(removeCommas(val.amount)) * Number(removeCommas(val.price)),
-      0
-    );
-    const totalAmount = enterValue.reduce(
-      (acc, val) => acc + Number(removeCommas(val.amount)),
-      0
-    );
-    setCalculatedPrice(totalCost / totalAmount);
-  };
+  const totalAmount = enterValue.reduce(
+    (acc, val) => acc + Number(removeCommas(val.amount)),
+    0
+  );
+
+  const totalCost = enterValue.reduce(
+    (acc, val) =>
+      acc + Number(removeCommas(val.amount)) * Number(removeCommas(val.price)),
+    0
+  );
+
+  const profitRatio: number = selectedCoinInfo
+    ? Number(
+        ((selectedCoinInfo.current_price / calculatedPrice) * 100).toFixed(2)
+      )
+    : 0;
 
   return (
     <section className="max-w-[50%] mx-auto pt-32">
@@ -125,7 +128,10 @@ export default function CoinCalculatorClient(props: PropType) {
         />
       </div>
       <article className="mt-6">
-        <p>체결 가격과 수량을 입력하세요</p>
+        <p>
+          체결 가격({selectedCountry === "🇰🇷" ? "KRW" : "USD"})과 수량을
+          입력하세요
+        </p>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-3">
             {enterValue.map((el, idx) => (
@@ -187,7 +193,7 @@ export default function CoinCalculatorClient(props: PropType) {
             <Button
               text="계산하기"
               className="w-full mt-3"
-              onClick={handleCalcuate}
+              onClick={() => setCalculatedPrice(totalCost / totalAmount)}
             />
             {calculatedPrice ? (
               <Button
@@ -209,6 +215,33 @@ export default function CoinCalculatorClient(props: PropType) {
                 : "₩" + withCommas((calculatedPrice * krwPrice).toFixed(0))
               : "두구두구두구두구"}
           </h3>
+          {calculatedPrice && (
+            <>
+              <div className="w-full flex justify-between">
+                <p className="h6">수량</p>
+                <p className="h6">
+                  {totalAmount} {selectedCoin.label}
+                </p>
+              </div>
+              {selectedCoinInfo && (
+                <div className="w-full flex justify-between h6">
+                  <p>수익률</p>
+                  <p
+                    className={`${
+                      profitRatio > 0
+                        ? "text-positive100"
+                        : profitRatio < 0
+                        ? "text-negative100"
+                        : ""
+                    }`}
+                  >
+                    {profitRatio > 0 ? "+" : profitRatio < 0 ? "-" : ""}
+                    {profitRatio}%
+                  </p>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </article>
     </section>
