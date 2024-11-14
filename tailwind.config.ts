@@ -11,7 +11,9 @@ export default {
       colors: {
         "navbar-dark": "#222b36",
         "page-dark": "#171c24",
-        "second-primary": "#03C8D1"
+        "second-primary": "#03C8D1",
+        positive100: "#3FD38C",
+        negative100: "#F96B6C"
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

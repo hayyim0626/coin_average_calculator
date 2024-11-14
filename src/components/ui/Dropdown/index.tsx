@@ -75,7 +75,7 @@ const Dropdown: React.FC<PropType> = (props) => {
           <span className={`ml-2 ${isOpen ? "rotate-180" : ""}`}>▼</span>
         </div>
         {isOpen && (
-          <ul className="absolute dark:bg-page-dark bg-white z-10 w-full mt-1 border rounded-lg shadow-lg max-h-60 overflow-auto flex flex-col gap-2 p-2">
+          <ul className="absolute dark:bg-page-dark bg-white z-10 w-full mt-1 border border-sky-600 rounded-lg shadow-lg max-h-60 overflow-auto flex flex-col gap-2 p-2">
             {data.map((el, idx) => (
               <li
                 key={`${el.label}-${idx}`}
