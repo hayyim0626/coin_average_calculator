@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { CoinList } from "./apis/types";
-import { withCommas, removeCommas } from "@/utils/functions";
+import { withCommas, removeCommas, cutDecimal } from "@/utils/functions";
 import Button from "@/components/ui/Button";
 import Dropdown, { DropDownDefault } from "@/components/ui/Dropdown";
 import CoinInfo from "@/components/ui/CoinInfo";
@@ -95,9 +95,7 @@ export default function CoinCalculatorClient(props: PropType) {
   );
 
   const profitRatio: number = selectedCoinInfo
-    ? Number(
-        ((selectedCoinInfo.current_price / calculatedPrice) * 100).toFixed(2)
-      )
+    ? (selectedCoinInfo.current_price / calculatedPrice) * 100 - 100
     : 0;
 
   return (
@@ -215,7 +213,7 @@ export default function CoinCalculatorClient(props: PropType) {
                 : "₩" + withCommas((calculatedPrice * krwPrice).toFixed(0))
               : "두구두구두구두구"}
           </h3>
-          {calculatedPrice && (
+          {calculatedPrice ? (
             <>
               <div className="w-full flex justify-between">
                 <p className="h6">수량</p>
@@ -235,13 +233,13 @@ export default function CoinCalculatorClient(props: PropType) {
                         : ""
                     }`}
                   >
-                    {profitRatio > 0 ? "+" : profitRatio < 0 ? "-" : ""}
-                    {profitRatio}%
+                    {profitRatio > 0 && "+"}
+                    {cutDecimal(profitRatio, 2)}%
                   </p>
                 </div>
               )}
             </>
-          )}
+          ) : null}
         </div>
       </article>
     </section>

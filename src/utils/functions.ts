@@ -1,3 +1,9 @@
+import { Decimal } from "decimal.js-light";
+
+Decimal.config({
+  toExpNeg: -9
+});
+
 const comma = (val: string) => {
   return val.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
 };
@@ -21,4 +27,15 @@ export const removeCommas = (amount: string): string => {
 
 export const wait = (time: number) => {
   return new Promise((resolve) => setTimeout(resolve, time));
+};
+
+export const cutDecimal = (value: number | string, precision: number = 8) => {
+  if (!value) return "0";
+  if (typeof value === "string") {
+    value = Number(value);
+  }
+  const res = new Decimal(value)
+    .toDecimalPlaces(precision, Decimal.ROUND_HALF_UP)
+    .toString();
+  return res;
 };
