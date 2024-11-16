@@ -95,7 +95,10 @@ export default function CoinCalculatorClient(props: PropType) {
   );
 
   const profitRatio: number = selectedCoinInfo
-    ? (selectedCoinInfo.current_price / calculatedPrice) * 100 - 100
+    ? selectedCoinInfo.current_price *
+        (selectedCountry === "🇺🇸" ? 1 : krwPrice / calculatedPrice) *
+        100 -
+      100
     : 0;
 
   return (
@@ -209,8 +212,8 @@ export default function CoinCalculatorClient(props: PropType) {
           <h3 className="h3">
             {calculatedPrice
               ? selectedCountry === "🇺🇸"
-                ? "$" + withCommas(calculatedPrice.toFixed(2))
-                : "₩" + withCommas((calculatedPrice * krwPrice).toFixed(0))
+                ? "$" + withCommas(cutDecimal(calculatedPrice, 2))
+                : "₩" + withCommas(cutDecimal(calculatedPrice, 0))
               : "두구두구두구두구"}
           </h3>
           {calculatedPrice ? (
@@ -218,7 +221,7 @@ export default function CoinCalculatorClient(props: PropType) {
               <div className="w-full flex justify-between">
                 <p className="h6">수량</p>
                 <p className="h6">
-                  {totalAmount} {selectedCoin.label}
+                  {cutDecimal(totalAmount)} {selectedCoin.label}
                 </p>
               </div>
               {selectedCoinInfo && (
