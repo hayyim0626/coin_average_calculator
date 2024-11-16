@@ -1,5 +1,5 @@
-import { CoinList } from '@/apis/types';
-import { withCommas } from '@/utils/functions';
+import { CoinList } from "@/app/apis/types";
+import { withCommas } from "@/utils/functions";
 
 interface PropType {
   coinInfo: CoinList | undefined;
@@ -22,8 +22,8 @@ const CoinInfo: React.FC<PropType> = (props) => {
         <p className="text-blue-700 dark:text-blue-100">
           {withCommas(
             isUsdMode
-              ? '$' + coinInfo.current_price
-              : '₩' + (coinInfo.current_price * krwPrice).toFixed(0)
+              ? "$" + coinInfo.current_price
+              : "₩" + (coinInfo.current_price * krwPrice).toFixed(0)
           )}
         </p>
       </div>
@@ -38,8 +38,8 @@ const CoinInfo: React.FC<PropType> = (props) => {
         <p className="text-blue-700 dark:text-blue-100">
           {withCommas(
             isUsdMode
-              ? '$' + coinInfo.market_cap
-              : '₩' + (coinInfo.market_cap * krwPrice).toFixed(0)
+              ? "$" + coinInfo.market_cap
+              : "₩" + (coinInfo.market_cap * krwPrice).toFixed(0)
           )}
         </p>
       </div>
@@ -48,8 +48,8 @@ const CoinInfo: React.FC<PropType> = (props) => {
         <p className="text-blue-700 dark:text-blue-100">
           {withCommas(
             isUsdMode
-              ? '$' + coinInfo.high_24h
-              : '₩' + (coinInfo.high_24h * krwPrice).toFixed(0)
+              ? "$" + coinInfo.high_24h
+              : "₩" + (coinInfo.high_24h * krwPrice).toFixed(0)
           )}
         </p>
       </div>
@@ -58,8 +58,8 @@ const CoinInfo: React.FC<PropType> = (props) => {
         <p className="text-blue-700 dark:text-blue-100">
           {withCommas(
             isUsdMode
-              ? '$' + coinInfo.low_24h
-              : '₩' + (coinInfo.low_24h * krwPrice).toFixed(0)
+              ? "$" + coinInfo.low_24h
+              : "₩" + (coinInfo.low_24h * krwPrice).toFixed(0)
           )}
         </p>
       </div>
