@@ -102,7 +102,7 @@ export default function CoinCalculatorClient(props: PropType) {
     : 0;
 
   return (
-    <section className="max-w-[50%] mx-auto pt-32">
+    <section className="max-w-[50%] mx-auto mt-16">
       <div className="flex items-center justify-between">
         기준 통화(USD/KRW){" "}
         <button

@@ -22,7 +22,7 @@ export default function NavBar() {
             height={20}
             alt="nav face icon"
           />
-          재미로 만들어 보는 평단가 계산기
+          Chan's
         </div>
         <div
           onClick={() => setOffCanvasClicked(!offCanvasClicked)}
