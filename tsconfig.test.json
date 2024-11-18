@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true, // 엄격한 타입 체크
+    "noEmit": false, // 컴파일된 파일 생성 허용
+    "isolatedModules": false, // 전체 프로젝트 타입 체크 활성화
+    "types": ["jest", "node", "@testing-library/jest-dom"],
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "**/*.test.ts", "**/*.test.tsx"]
+}
