@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "test:types": "tsc -p tsconfig.test.json --noEmit && jest",
     "test:watch": "jest --watch"
   },
   "dependencies": {
